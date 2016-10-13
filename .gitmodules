@@ -1,0 +1,4 @@
+[submodule "gameliftExample/plugins"]
+	path = gameliftExample/plugins
+	url = https://github.com/jwvg0425/ue4-aws-gamelift
+	branch = master
