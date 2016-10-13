@@ -4,3 +4,5 @@
 
 #include "Engine.h"
 
+#include "awsCoreModule.h"
+#include "gameliftModule.h"

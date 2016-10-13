@@ -24,6 +24,7 @@
 *.la
 *.a
 *.lib
+*.dll
 
 # Executables
 *.exe
@@ -38,6 +39,7 @@
 *.opensdf
 *.sdf
 *.VC.opendb
+*.VC.db
 
 # Precompiled Assets
 SourceArt/**/*.png
