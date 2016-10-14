@@ -2,7 +2,7 @@
 
 #include "gameliftExample.h"
 #include "GameLiftManager.h"
-
+#include "TcpClient.h"
 
 
 // Sets default values
@@ -19,6 +19,8 @@ void AGameLiftManager::BeginPlay()
 	Super::BeginPlay();
 
 	SetUpAwsClient();
+
+	DoTestNow();
 }
 
 // Called every frame
@@ -83,6 +85,15 @@ bool AGameLiftManager::CreatePlayerSession()
 
 bool AGameLiftManager::ConnectPlayerSession()
 {
+	TActorIterator<ATcpClient> iter(GetWorld());
+
+	if (iter->Connect(ServerIpAddress, Port))
+	{
+		iter->LoginRequest(PlayerSessionId);
+		return true;
+	}
+
+	/// conn error
 	return false;
 }
 
