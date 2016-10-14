@@ -217,7 +217,10 @@ void ATcpClient::ProcessPacket()
 			bool ret = RecvBuffer.Read((char*)&recvData, recvData.mSize);
 			assert(ret);
 
-			PeerManager->PerformFunction(&APeerManager::UpdatePeer, recvData.mPlayerIdx, recvData.mPosX, recvData.mPosY);
+			if (recvData.mPlayerIdx == LoginId)
+				PeerManager->PerformFunction(&APeerManager::UpdateMe, recvData.mPosX, recvData.mPosY);
+			else
+				PeerManager->PerformFunction(&APeerManager::UpdatePeer, recvData.mPlayerIdx, recvData.mPosX, recvData.mPosY);
 		}
 		break;
 

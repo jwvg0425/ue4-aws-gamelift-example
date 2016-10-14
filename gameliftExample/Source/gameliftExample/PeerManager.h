@@ -5,6 +5,8 @@
 #include "GameFramework/Actor.h"
 #include "PeerManager.generated.h"
 
+class ATcpClient;
+
 UCLASS()
 class GAMELIFTEXAMPLE_API APeerManager : public AActor
 {
@@ -29,14 +31,19 @@ public:
 		});
 	}
 
+	void UpdateMe(float x, float y);
 	void UpdatePeer(int id, float x, float y);
 	void ChatDraw(FString from, FString chat);
 
 private:
 	UPROPERTY(EditAnywhere)
+	UClass* MeClass;
+
+	UPROPERTY(EditAnywhere)
 	UClass* PeerClass;
 
 	TQueue<std::function<void()>> PerformQueue;
+	AActor* Me;
 	TMap<int, AActor*> PeerMap;
-
+	ATcpClient* Tcp;
 };

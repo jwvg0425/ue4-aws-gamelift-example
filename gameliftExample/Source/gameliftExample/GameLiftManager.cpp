@@ -53,6 +53,10 @@ bool AGameLiftManager::SearchGameSessions()
 	if (outcome.IsSuccess())
 	{
 		auto& games = outcome.GetResult().GetGameSessions();
+
+		if (games.empty())
+			return false;
+
 		auto& gs = games[0];
 
 		Port = gs.GetPort();
